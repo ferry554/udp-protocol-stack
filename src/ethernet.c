@@ -61,7 +61,6 @@ void ethernet_init()
 {
     buf_init(&rxbuf, ETHERNET_MAX_TRANSPORT_UNIT + sizeof(ether_hdr_t));
 }
-
 /**
  * @brief 一次以太网轮询
  *
