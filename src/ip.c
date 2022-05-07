@@ -24,7 +24,7 @@ void ip_in(buf_t *buf, uint8_t *src_mac)
     //总长度字段小于或等于收到的包的长度等，如果不符合这些要求，则丢弃不处理。
     //IP版本不为IPv4，或者总长度字段大于接受到包的长度，就丢弃
     ip_hdr_t *hdr = (ip_hdr_t *)(buf->data);
-    if(hdr->version!=IP_VERSION_4)
+    if(hdr->version!=IP_VERSION_4||buf->len<swap16(hdr->total_len16))
     {
         return;
     } 

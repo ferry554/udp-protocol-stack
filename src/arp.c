@@ -8,6 +8,8 @@
  * @brief 初始的arp包
  *
  */
+
+/*
 static const arp_pkt_t arp_init_pkt = {
     .hw_type16 = swap16(ARP_HW_ETHER),
     .pro_type16 = swap16(NET_PROTOCOL_IP),
@@ -16,7 +18,7 @@ static const arp_pkt_t arp_init_pkt = {
     .sender_ip = NET_IF_IP,
     .sender_mac = NET_IF_MAC,
     .target_mac = {0}};
-
+*/
 /**
  * @brief arp地址转换表，<ip,mac>的容器
  *
