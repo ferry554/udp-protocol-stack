@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "netfwd": "c"
+        "netfwd": "c",
+        "stdlib.h": "c",
+        "malloc.h": "c",
+        "net.h": "c",
+        "icmp.h": "c",
+        "ip.h": "c"
     }
 }

@@ -19,6 +19,19 @@ map_t udp_table;
 static uint16_t udp_checksum(buf_t *buf, uint8_t *src_ip, uint8_t *dst_ip)
 {
     // TO-DO
+    // Step1 ：首先调用buf_add_header()函数增加UDP伪头部。
+
+    //Step2 ：将被UDP伪头部覆盖的IP头部拷贝出来，暂存IP头部，以免被覆盖。
+
+    //Step3 ：填写UDP伪头部的12字节字段。
+
+    //Step4 ：计算UDP校验和。
+
+    //Step5 ：再将 Step2 中暂存的IP头部拷贝回来。
+
+    //Step6 ：调用buf_remove_header()函数去掉UDP伪头部。
+
+    //Step7 ：返回计算出来的校验和值。
 }
 
 /**
@@ -30,6 +43,18 @@ static uint16_t udp_checksum(buf_t *buf, uint8_t *src_ip, uint8_t *dst_ip)
 void udp_in(buf_t *buf, uint8_t *src_ip)
 {
     // TO-DO
+    //Step1 ：首先做包检查，检测该数据报的长度是否小于UDP首部长度，
+    //或者接收到的包长度小于UDP首部长度字段给出的长度，如果是，则丢弃不处理。
+
+    //Step2 ：接着重新计算校验和，先把首部的校验和字段保存起来，然后把该字段填充0，
+    //调用udp_checksum()函数计算出校验和，如果该值与接收到的UDP数据报的校验和不一致，则丢弃不处理。
+
+    //Step3 ：调用map_get()函数查询udp_table是否有该目的端口号对应的处理函数（回调函数）。
+
+    //Step4 ：如果没有找到，则调用buf_add_header()函数增加IPv4数据报头部，
+    //再调用icmp_unreachable()函数发送一个端口不可达的ICMP差错报文。
+
+    //Step5 ：如果能找到，则去掉UDP报头，调用处理函数来做相应处理。
 }
 
 /**
@@ -43,6 +68,14 @@ void udp_in(buf_t *buf, uint8_t *src_ip)
 void udp_out(buf_t *buf, uint16_t src_port, uint8_t *dst_ip, uint16_t dst_port)
 {
     // TO-DO
+    //Step1 ：首先调用buf_add_header()函数添加UDP报头。
+
+    //Step2 ：接着，填充UDP首部字段。
+
+    //Step3 ：先将校验和字段填充0，然后
+    //调用udp_checksum()函数计算出校验和，再将计算出来的校验和结果填入校验和字段。
+
+    //Step4 ：调用ip_out()函数发送UDP数据报。
 }
 
 /**

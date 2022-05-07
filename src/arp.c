@@ -61,7 +61,7 @@ void arp_req(uint8_t *target_ip)
 {
     // TO-DO
     // Step1 ：调用buf_init()对txbuf进行初始化。
-    buf_init(&txbuf, ETHERNET_MIN_TRANSPORT_UNIT);
+    buf_init(&txbuf, sizeof(arp_pkt_t));
     // Step2 ：填写ARP报头。
     // Step3 ：ARP操作类型为ARP_REQUEST，注意大小端转换。
     arp_pkt_t *hdr = (arp_pkt_t *)(txbuf.data);
@@ -90,7 +90,7 @@ void arp_resp(uint8_t *target_ip, uint8_t *target_mac)
 {
     // TO-DO
     // Step1 ：首先调用buf_init()来初始化txbuf。
-    buf_init(&txbuf, ETHERNET_MIN_TRANSPORT_UNIT);
+    buf_init(&txbuf, sizeof(arp_pkt_t));
     // Step2 ：接着，填写ARP报头首部。
     arp_pkt_t *hdr = (arp_pkt_t *)(txbuf.data);
     hdr->hw_type16 = swap16(ARP_HW_ETHER);
